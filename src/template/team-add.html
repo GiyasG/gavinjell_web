@@ -1,0 +1,57 @@
+<div class="row well">
+  <div class="col-md-2">
+    <button class="btn btn-info" ngf-select ng-model="File"
+    accept="image/*"
+    ngf-max-height="1000"
+    ngf-max-size="1MB">Select picture
+  </button>
+  <p class="text-center well">
+  <img class="imgfit" ng-src={{File.$ngfBlobUrl}}>
+  </p>
+</div>
+
+      <div class="well col-md-3">
+          <span>Title</span>
+          <input class="form-control" type="text" ng-model="fTeams.title" value=""/>
+          <span>Name</span>
+          <input class="form-control"  type="text" ng-model="fTeams.name" value=""/>
+          <span>Surname</span>
+          <input class="form-control"  type="text" ng-model="fTeams.surname" value=""/>
+          <span>Position</span>
+          <input class="form-control"  type="text" ng-model="fTeams.position"/>
+          <span>Date of birth</span>
+          <input class="form-control"  type="date" ng-model="fTeams.dob"/>
+          <span>Sex</span>
+          <select ng-model="fTeams.genders.model"
+                  required>
+              <option value="" selected>Select gender</option>
+              <option ng-repeat="option in fTeams.genders.sex"
+                value="{{option}}">
+                {{option}}
+              </option>
+          </select>
+
+
+      </div>
+
+
+        <div class="well col-md-6">
+          <!-- <textarea ui-tinymce="tinymceOptions" ng-model="tinymceModel"
+                    ng-trim="false"></textarea> -->
+
+          <textarea data-ui-tinymce id="tinymce1" data-ng-model="fTeams.about"></textarea>
+          <!-- <textarea type="textarea" ng-model="fTeams.about" rows="5" style="min-width: 90%;"></textarea> -->
+        </div>
+
+    <div class="col-md-12">
+      <span class="pwarnings">{{message.info ?  message.info[1].message : message }}</span>
+    </div>
+
+    <div class="col-md-12 text-center">
+      <button class="btn btn-success" ng-click="onTeamSelect(File, $scope.fTeams.about)">Save
+      </button>
+      <button class="btn btn-success" ng-click="CloseAddTeam()">Cancel
+      </button>
+    </div>
+
+  </div>

@@ -1,0 +1,48 @@
+<!-- <nav-bar></nav-bar> -->
+<div class="container">
+	<h2> Publications </h2>
+	<hr>
+			<div class="col-md-12" ng-repeat="item in papersCtrl.PagesPapers[0]">
+				<a ui-sref="paper({id:'{{item.id}}'})">
+            <h2> {{item.title}} </h2>
+						<div class="col-md-4">
+							<img class="imgfit" ng-src="img/{{item.image}}"  alt="photo"/>
+						</div>
+						<!-- <div class="col-md-8">
+							<p ng-bind-html="item.description"></p>
+						</div> -->
+						<div class="col-md-8">
+							<p>URL: {{item.url}}</p>
+							<p>Publishing date: {{item.published}}</p>
+							<div ng-if="item.author">Authors:
+								<span ng-repeat="person in item.author" ng-init="sectionIndex = $index">
+									<span ng-show="sectionIndex > 0">, </span>{{person.title}}. {{person.name}} {{person.surname}}</span>
+							</div>
+						</div>
+						</a>
+						<hr class="col-md-12">
+       </div>
+</div>
+
+<div class="col-md-5 text-center column-in-center">
+		<ul class="pagination">
+			<button ng-show="papersCtrl.currentPage-1>=0"
+							ng-style="isPrevious"
+							ng-click="papersCtrl.NextPage(papersCtrl.currentPage-1)">
+							Previous
+			</button>
+		</ul>
+		<ul ng-repeat="num in papersCtrl.totalPages" class="pagination pg-blue">
+			<button class="active"
+							ng-click="papersCtrl.NextPage(num-1)">
+							{{num}}
+			</button>
+		</ul>
+		<ul class="pagination pg-blue">
+			<button ng-show="papersCtrl.totalPagesNumber-1!=papersCtrl.currentPage"
+							ng-style="isNext"
+							ng-click="papersCtrl.NextPage(papersCtrl.currentPage+1)">
+							Next
+			</button>
+		</ul>
+</div>

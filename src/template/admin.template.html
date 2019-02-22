@@ -1,0 +1,223 @@
+<div ng-if="hasRoleAdmin">
+<h2> Administration </h2>
+<div>
+
+<div class="text-center"><h4>Add, update or delete</h4></div>
+<button  ng-if="!AddNewRecord && !aCtrl.items[0].all[0]" class="btn btn-success" ng-click="AddItem()">Add new item</button>
+<hr>
+
+<admin-add ng-if="AddNewRecord"></admin-add>
+
+<div ng-repeat="item in aCtrl.items[0].all[0]" ng-init="sectionIndex = $index">
+	<div ng-if="sectionIndex != updateIndexItem" class="row">
+
+    <div class="col-md-2">
+      <button class="btn btn-success" ng-click="UpdateItem(item.authority_id, sectionIndex)">Update</button>
+      <button class="btn btn-warning" ng-click="DeleteItem(item.authority_id)">Delete</button>
+      <!-- <p>{{sectionIndex}}</p> -->
+		</div>
+
+        <div class="col-md-2 well text-center">
+            <img class="imgfit" ng-src="img/{{item.image}}"  alt="photo"/>
+        </div>
+
+        <div class="col-md-6">
+            <p> {{item.title}} {{item.name}} {{item.surname}}</p>
+            <p ng-bind-html="uCanTrust(item.about)"></p>
+        </div>
+    </div>
+    <admin-update ng-if="sectionIndex == updateIndexItem"></admin-update>
+		<div class="text-center">
+			<button ng-if="!AddNewContact && !aCtrl.items[4].contact[0]" class="btn btn-success" ng-click="AddContact(item.authority_id)">Add new contact</button>
+			<button ng-if="!AddNewProject" class="btn btn-success" ng-click="AddProject(item.authority_id)">Add new project</button>
+			<button ng-if="!AddNewPaper" class="btn btn-success" ng-click="AddPaper(item.authority_id)">Add new publication</button>
+			<button ng-if="!AddNewTeam" class="btn btn-success" ng-click="AddTeam(item.authority_id)">Add new team memeber</button>
+		</div>
+
+		<contact-add ng-if="AddNewContact"></contact-add>
+		<project-add ng-if="AddNewProject"></project-add>
+		<paper-add ng-if="AddNewPaper"></paper-add>
+		<team-add ng-if="AddNewTeam"></team-add>
+</div>
+</div>
+<hr class="panel-info">
+
+<div ng-if="aCtrl.items[4].contact[0]">
+<div class="text-center"><h4>Update or delete Contact</h4></div>
+
+		<div ng-repeat="item in aCtrl.items[4].contact[0]" ng-init="sectionIndex = $index">
+				 <div ng-if="sectionIndex != updateIndexContact" class="row">
+					 <div class="col-md-2">
+						 <h4>Contact</h4>
+					 </div>
+						<div class="col-md-2">
+							<button class="btn btn-success" ng-click="UpdateContact(item.authority_id, item.id, sectionIndex)">Update</button>
+							<button class="btn btn-warning" ng-click="DeleteContact(item.authority_id, item.id)">Delete</button>
+							<!-- <p>{{sectionIndex}}</p> -->
+						</div>
+						<div class="col-md-6">
+							<span>Type of property</span> <p>{{item.propertytype}}</p>
+						  <span>Country</span> <p>{{item.country}}</p>
+						  <span>City</span>  <p>{{item.city}}</p>
+						  <span>Postcode</span>  <p>{{item.postcode}}</p>
+						  <span>Street</span>	  <p>{{item.street}}</p>
+						  <span>Phone number</span>  <p>{{item.phone}}</p>
+						  <span>E-mail</span>  <p>{{item.email}}</p>
+						</div>
+				</div>
+				<contact-update ng-if="sectionIndex == updateIndexContact"></contact-update>
+		</div>
+</div>
+<hr class="panel-info">
+
+<div>
+<div class="text-center"><h4>Update or delete Project</h4></div>
+
+<div ng-repeat="item in aCtrl.items[1].projects[0][0]" ng-init="sectionIndex = $index">
+ <div ng-if="sectionIndex != updateIndexProject" class="row">
+	<div class="col-md-2">
+		<button class="btn btn-success" ng-click="UpdateProject(item.authority_id, item.id, sectionIndex)">Update</button>
+		<button class="btn btn-warning" ng-click="DeleteProject(item.authority_id, item.id)">Delete</button>
+		<!-- <p>{{sectionIndex}}</p> -->
+	</div>
+	<div class="col-md-2 well text-center">
+			<img class="imgfit" ng-src="img/{{item.image}}"  alt="photo"/>
+	</div>
+	<div class="col-md-6">
+			<p> {{item.title}} </p>
+			<p ng-bind-html="uCanTrust(item.description)"></p>
+	</div>
+</div>
+	<project-update ng-if="sectionIndex == updateIndexProject"></project-update>
+	<hr>
+</div>
+</div>
+<hr class="panel-info">
+
+<div>
+<div class="text-center"><h4>Update or delete Publication</h4></div>
+
+<div ng-repeat="item in aCtrl.items[2].papers[0][0]" ng-init="sectionIndex = $index">
+	<div ng-if="sectionIndex != updateIndexPaper" class="row">
+ 	<div class="col-md-2">
+ 		<button class="btn btn-success" ng-click="UpdatePaper(item.authority_id, item.id, sectionIndex)">Update</button>
+ 		<button class="btn btn-warning" ng-click="DeletePaper(item.authority_id, item.id)">Delete</button>
+ 		<!-- <p>{{sectionIndex}}</p> -->
+ 	</div>
+	<div class="col-md-2 well text-center">
+			<img class="imgfit" ng-src="img/{{item.image}}"  alt="photo"/>
+	</div>
+	<div class="col-md-6">
+			<p> {{item.title}} </p>
+			<p ng-bind-html="uCanTrust(item.description)"></p>
+	</div>
+</div>
+	<paper-update ng-if="sectionIndex == updateIndexPaper"></paper-update>
+	<hr>
+</div>
+</div>
+<hr class="panel-info">
+
+<!-- TEAM -->
+<div>
+		<div class="text-center"><h4>Update or delete team members</h4></div>
+
+		<div ng-repeat="item in aCtrl.items[3].teams[0][0]" ng-init="sectionIndex = $index">
+			<!-- {{sectionIndex}} -  {{updateIndexTeam}} -->
+			<team-update ng-if="sectionIndex == updateIndexTeam"></team-update>
+					<div ng-if="sectionIndex != updateIndexTeam" class="row">
+				 	<div class="col-md-2">
+				 		<button class="btn btn-success" ng-click="UpdateTeam(item.authority_id, item.id, sectionIndex)">Update</button>
+				 		<button class="btn btn-warning" ng-click="DeleteTeam(item.authority_id, item.id)">Delete</button>
+				 	</div>
+					<div class="col-md-2 well text-center">
+							<img class="imgfit" ng-src="img/{{item.image}}"  alt="photo"/>
+					</div>
+					<div class="col-md-7">
+						<p> {{item.titlet}} {{item.name}} {{item.surname}}</p>
+						<p ng-bind-html="uCanTrust(item.about)"></p>
+					</div>
+				</div>
+				<div class="col-md-12" ng-if="!item.contact.length && sectionIndex != updateIndexTeamcontact">
+					<button class="btn btn-info" ng-click="AddTeamContact(item.authority_id, item.id, sectionIndex)">Add contact for {{item.titlet}} {{item.name}} {{item.surname}}</button>
+				</div>
+				<div class="col-md-2">
+					<h4>Address</h4>
+				</div>
+				<div class="col-md-9">
+					<teamcontact-add ng-if="AddNewTeamcontact && (sectionIndex == updateIndexTeamcontact)"></teamcontact-add>
+					<teamcontact-update ng-if="!AddNewTeamcontact && (sectionIndex == updateIndexTeamcontact)"></teamcontact-update>
+				</div>
+			<div ng-if="sectionIndex != updateIndexTeam" class="row">
+
+			<div ng-repeat="cnt in item.contact" ng-init="sectionIndexC = $index">
+				<div class="col-md-2" ng-if="sectionIndex != updateIndexTeamcontact">
+					<!-- {{item.id}} -  {{cnt.contact_id}} -->
+					<button class="btn btn-success" ng-click="UpdateTeamcontact(item.id, cnt.id, sectionIndex)">Update</button>
+					<button class="btn btn-warning" ng-click="DeleteTeamcontact(item.id, cnt.id)">Delete</button>
+				</div>
+				<div class="col-md-7" ng-if="sectionIndex != updateIndexTeamcontact">
+					<p><span>Street:  </span>{{cnt.street}}</p>
+					<p><span>City:  </span>{{cnt.city}}</p>
+					<p><span>Phone:  </span>{{cnt.phone}}</p>
+					<p><span>E-mail:  </span>{{cnt.email}}</p>
+				</div>
+		</div>
+		</div>
+		<hr class="panel-warning">
+</div>
+</div>
+
+<hr class="panel-info">
+
+<!-- SLIDES -->
+<div>
+
+<div class="text-center"><h4>Add or delete slides</h4></div>
+
+		<div class="col-md-12">
+			<div class="well col-md-3" ng-repeat="item in aCtrl.items[6].slide[0]" ng-init="sectionIndex = $index">
+				<img class="imgslide" src="img/{{item.image}}" alt={{item.title}}>
+				<span>{{item.title}}</span>
+				<button class="glyphicon glyphicon-minus rbn"
+				ng-if="item.title"
+				ng-click="DeleteSI(item.id, item.nameofdb)">
+				</button>
+			</div>
+		</div>
+
+		<div class="well col-md-5">
+		<div>Add project</div>
+		<select class="inline" ng-model="fSlides.projects.model">
+			<option value="" selected>Select</option>
+			<option style="font-weight: bold;" ng-repeat="option1 in aCtrl.items[1].projects[0][0]"
+			value="{{option1.id}}"
+			ng-disabled="disabledSI[option1.id+option1.title]">
+			{{option1.title}}
+		</option>
+		</select>
+		<button class="glyphicon glyphicon-plus rbn" ng-click="addSI(fSlides.projects.model, 'projects')"></button>
+		</div>
+
+
+		<div class="well col-md-5">
+		<div>Add publication</div>
+		<select class="inline" ng-model="fSlides.papers.model">
+			<option value="" selected>Select</option>
+			<option style="font-weight: bold;" ng-repeat="option2 in aCtrl.items[2].papers[0][0]"
+			value="{{option2.id}}"
+			ng-disabled="disabledSI[option2.id+option2.title]">
+			{{option2.title}}
+		</option>
+		</select>
+		<button class="glyphicon glyphicon-plus rbn" ng-click="addSI(fSlides.papers.model, 'papers')"></button>
+		</div>
+</div>
+
+<hr class="panel-info col-md-12">
+
+<div ng-if="!hasRoleAdmin">
+	<h4>Please login to access
+	<a ui-sref="home">Home</a>
+	</h4>
+</div>

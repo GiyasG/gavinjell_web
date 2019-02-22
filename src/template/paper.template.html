@@ -1,0 +1,50 @@
+<!-- <nav-bar></nav-bar> -->
+<div class="container">
+	<hr>
+			<div class="col-md-12" ng-repeat="item in rsCtrl.items[2].papers[0]">
+            <h2> {{item.title}} </h2>
+						<div class="col-md-4">
+							<img class="imgfit" ng-src="img/{{item.image}}"  alt="photo"/>
+						</div>
+						<div class="col-md-8">
+							<p ng-bind-html="uCanTrust(item.description)"></p>
+						</div>
+						<div class="col-md-12">
+							<p>URL: {{item.url}}</p>
+							<p>Publishing date: {{item.published}}</p>
+							<!-- <div ng-if="item.author">Authors:
+								<span ng-repeat="person in item.author" ng-init="sectionIndex = $index">
+									<span ng-show="sectionIndex > 0">, </span>{{person.title}}. {{person.name}} {{person.surname}}</span>
+							</div> -->
+						</div>
+						<hr class="col-md-12">
+						<div ng-if="showComment">
+							<h4  class="col-md-12">Leave a comment</h4>
+							<div  class="col-md-11">
+								<textarea data-ui-tinymce data-ng-model="rsCtrl.newcomment"></textarea>
+							</div>
+						</div>
+						<p ng-model="rsCtrl.newcomment"></p>
+						<div  ng-if="showComment" class="col-md-1">
+							<button class="cmnt green glyphicon glyphicon-plus rbn" ng-click="addComment('papers', item.authority_id, item.id, rsCtrl.newcomment)"></button>
+						</div>
+						<h4 class="col-md-12">Comments</h4>
+						<div ng-repeat="item in rsCtrl.items[7].comment[0]">
+							<div class="col-md-12">
+								<div class="col-md-2">
+									<div>{{item.uname}}:</div>
+									<span class="label label-info">{{item.updated_at}}</span>
+								</div>
+								<div ng-if="item.UID!=item.user_id" class="well col-md-9" ng-bind-html="uCanTrust(item.comment)" ng-disabled="true"></div>
+								<div class="col-md-1" ng-if="item.UID==item.user_id">
+									<button class="glyphicon glyphicon-remove rbn red" ng-click="deleteComment('comments', item.authority_id, item.id)"></button>
+									<button class="glyphicon glyphicon-ok rbn blue" ng-click="updateComment('comments', item.authority_id, item.id, item.comment)"></button>
+								</div>
+								<div class="well col-md-8" ng-if="item.UID==item.user_id">
+									<textarea data-ui-tinymce id="tinymce2" data-ng-model="item.comment"</textarea>
+								</div>
+							</div>
+						</div>
+
+       </div>
+</div>

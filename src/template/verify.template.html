@@ -1,0 +1,12 @@
+
+  <p class="pwarnings">{{vCtrl.info[0].ConfirmationStatus}}</p>
+  <div ng-if="!vCtrl.info[0].isEmailConfirmed">
+    <form accept-charset="utf-8" ng-submit="resendConfirmation()">
+    <input type="email"
+           ng-model="user.resend_email"
+           required
+           placeholder="Email address" />
+    <button type="submit"  class="btn btn-primary">Resend confirmation</button>
+    </form>
+    <p class="pwarnings">{{loginWarningResend}}</p>
+  </div>

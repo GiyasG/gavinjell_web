@@ -1,0 +1,29 @@
+	<input type="email" name="email" placeholder="Email address"
+         ng-model="user.em"
+         class="form-control"
+         required/>
+	<input type="password" name="password" placeholder="Password"
+         ng-model="user.ps"
+         ng-change="analyze(user.ps)"
+         ng-style="passwordStrength"
+         class="form-control"
+         required/>
+  <div>
+    <div ng-style="passwordStrength">{{passwordRegister}}</div>
+
+  </div>
+	<input type="text" n
+  ame="username"
+  placeholder="Username (optional)"
+  class="form-control"
+  ng-model="user.un"/>
+
+  <select ng-model="ems.emid"
+          ng-options="em.emid as em.emName for em in ems"
+          class="form-control"
+          required>
+    <option value="" selected>Require email confirmation?</option>
+
+  </select>
+
+  <p class="pwarnings">{{loginWarning}}</p>

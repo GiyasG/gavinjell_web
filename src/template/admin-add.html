@@ -1,0 +1,50 @@
+<div class="row well">
+  <div class="col-md-2">
+    <button class="btn btn-info" ngf-select ng-model="File"
+    accept="image/*"
+    ngf-max-height="1000"
+    ngf-max-size="1MB">Select picture
+  </button>
+  <p class="text-center well">
+  <img class="imgfit" ng-src={{File.$ngfBlobUrl}}>
+  </p>
+</div>
+
+      <div class="well col-md-3">
+          <span>Title</span>
+          <input class="form-control" type="text" ng-model="fElements.title" value=""/>
+          <span>Name</span>
+          <input class="form-control"  type="text" ng-model="fElements.name" value=""/>
+          <span>Surname</span>
+          <input class="form-control"  type="text" ng-model="fElements.surname" value=""/>
+          <span>Position</span>
+          <input class="form-control"  type="text" ng-model="fElements.position"/>
+          <span>Date of birth</span>
+          <input class="form-control"  type="date" ng-model="fElements.dob"/>
+          <span>Sex</span>
+          <select ng-model="fElements.genders.model"
+                  required>
+              <option value="" selected>Select gender</option>
+              <option ng-repeat="option in fElements.genders.sex"
+                value="{{option}}">
+                {{option}}
+              </option>
+          </select>
+      </div>
+
+        <div class="well col-md-6">
+          <textarea data-ui-tinymce id="tinymce1" data-ng-model="$scope.fElements.about"></textarea>
+        </div>
+
+    <div class="col-md-12">
+      <span class="pwarnings">{{message.info ?  message.info[1].message : message }}</span>
+    </div>
+
+    <div class="col-md-12 text-center">
+      <button class="btn btn-success" ng-click="onFileSelect(File, $scope.fElements.about)">Save
+      </button>
+      <button class="btn btn-success" ng-click="CloseAdd()">Cancel
+      </button>
+    </div>
+
+  </div>

@@ -1,0 +1,31 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">{{mCtrl.title}}</h3>
+</div>
+<div ng-if="!showLogin" class="modal-body" id="modal-body">
+<!-- {{mCtrl.data}} -->
+  <session-login ng-if="showModalLogin"></session-login>
+  <forgotten-password ng-if="showModalForgotten"></forgotten-password>
+  <session-register ng-if="showModalRegister"></session-register>
+</div>
+<div class="modal-footer">
+    <button ng-if="showModalLogin"
+    class="btn btn-primary"
+    ng-click="loginForm()">
+    Login</button>
+
+    <button ng-if="showModalForgotten"
+    class="btn btn-primary"
+    ng-click="changepassConfirmation()">
+    Send</button>
+
+    <button ng-if="showModalRegister"
+    class="btn btn-primary"
+    ng-click="registerForm()"
+    ng-disabled="disabledRegister">
+    Register</button>
+
+    <button class="btn btn-warning"
+    type="button"
+    ng-click="mCtrl.CloseModal()">
+    Cancel</button>
+</div>

@@ -1,0 +1,31 @@
+<div class="row well">
+
+      <div class="well col-md-3">
+          <span>Type of property</span>
+          <input class="form-control" type="text" ng-model="fContact.propertytype" value=""/>
+          <span>Country</span>
+          <input class="form-control" type="text" ng-model="fContact.country" value=""/>
+          <span>City</span>
+          <input class="form-control" type="text" ng-model="fContact.city" value=""/>
+          <span>Postcode</span>
+          <input class="form-control" type="text" ng-model="fContact.postcode" value=""/>
+          <span>Street</span>
+          <input class="form-control" type="text" ng-model="fContact.street" value=""/>
+          <span>Phone number</span>
+          <input class="form-control" type="text" ng-model="fContact.phone" value=""/>
+          <span>E-mail</span>
+          <input class="form-control" type="email" ng-model="fContact.email" value=""/>
+      </div>
+
+    <div class="col-md-12">
+      <span class="pwarnings">{{message.info ?  message.info[1].message : message }}</span>
+    </div>
+
+    <div class="col-md-12 text-center">
+      <button class="btn btn-success" ng-click="onContactSelect(File, $scope.fElements.about)">Save
+      </button>
+      <button class="btn btn-success" ng-click="CloseAddContact()">Cancel
+      </button>
+    </div>
+
+  </div>

@@ -1,0 +1,74 @@
+<!-- <span>{{sectionIndex}}</span> -->
+<div class="row well">
+
+<div class="col-md-2">
+  <button  class="btn btn-info" ngf-select ng-model="File"
+  accept="image/*"
+  ngf-max-height="1000"
+  ngf-max-size="1MB">Select picture
+</button>
+  <p class="well">
+    <img class="imgfit" ng-src="{{File.$ngfBlobUrl ?  File.$ngfBlobUrl : 'img/'+itemU.image }}">
+  </p>
+</div>
+
+<div class="well col-md-3">
+    <span>Title</span>
+    <input class="form-control" type="text" ng-model="itemU.title" value=""/>
+    <span>URL</span>
+    <input class="form-control"  type="text" ng-model="itemU.url" value=""/>
+    <span>Start date</span>
+    <input class="form-control"  type="date" ng-model="itemU.started" value="{{itemU.started}}"/>
+    <span>Closure date</span>
+    <input class="form-control"  type="date" ng-model="itemU.finished" value="{{itemU.finished}}"/>
+</div>
+
+<span>Description</span>
+<div class="well col-md-6">
+  <textarea data-ui-tinymce id="tinymce+itemU.id" data-ng-model="itemU.description"></textarea>
+</div>
+
+<div class="well col-md-12">
+<div>Add authors</div>
+<select class="inline" ng-model="fProjects.authors.model">
+  <option value="" selected>Select</option>
+  <option ng-repeat="option in itemU.team"
+  value="{{option.id}}"
+  ng-disabled="disabledTM[option.id]">
+  {{option.name}}
+</option>
+</select>
+<button class="glyphicon glyphicon-plus rbn" ng-click="addTM(fProjects.authors.model)"></button>
+
+<span class="well" ng-repeat="item in author">{{item.name}}
+  <button class="glyphicon glyphicon-minus rbn"
+  ng-if="item"
+  ng-click="DeleteTM(item.id, itemU.id, 'update')">
+  </button>
+ </span>
+
+ <div ng-if="itemU.author">Authors:</div>
+ <span ng-repeat="person in itemU.author">
+   {{person.title}} {{person.name}} {{person.surname}}
+   <button class="glyphicon glyphicon-minus rbn"
+   ng-if="item"
+   ng-click="DeleteTM(person.team_id, itemU.id, 'updater')">
+   </button>
+ </span>
+
+
+</div>
+
+
+
+<hr>
+<div class="col-md-12">
+  <span class="pwarnings">{{message.info ?  message.info[1].message : message}}</span>
+</div>
+
+<div class="col-md-12 text-center">
+  <button class="btn btn-success" ng-click="onProjectUpdate(File)">Save</button>
+  <button class="btn btn-success" ng-click="CancelUpdateProject(itemU.authority_id, itemU.id)">Cancel</button>
+</div>
+
+</div>

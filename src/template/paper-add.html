@@ -1,0 +1,61 @@
+<div class="row well">
+  <div class="col-md-2">
+    <button class="btn btn-info" ngf-select ng-model="File"
+    accept="image/*"
+    ngf-max-height="1000"
+    ngf-max-size="1MB">Select picture
+  </button>
+  <p class="text-center well">
+  <img class="imgfit" ng-src={{File.$ngfBlobUrl}}>
+  </p>
+</div>
+
+      <div class="well col-md-3">
+          <span>Title</span>
+          <input class="form-control" type="text" ng-model="fPapers.title" value=""/>
+          <span>URL</span>
+          <input class="form-control"  type="text" ng-model="fPapers.url" value=""/>
+          <span>Published</span>
+          <input class="form-control"  type="date" ng-model="fPapers.published"/>
+      </div>
+
+        <div class="well col-md-6">
+          <span>Description</span>
+          <textarea data-ui-tinymce id="tinymce1" data-ng-model="fPapers.description"></textarea>
+          <!-- <textarea type="textarea" ng-model="fPapers.description" rows="5" style="min-width: 90%;"></textarea> -->
+        </div>
+
+        <div class="well col-md-12">
+        <div>Add authors</div>
+        <select class="inline" ng-model="fPapers.authors.model">
+          <option value="" selected>Select</option>
+          <option ng-repeat="option in aCtrl.items[3].teams[0][0]"
+          value="{{option.id}}"
+          ng-disabled="disabledTM[option.id]">
+          {{option.titlet}} {{option.name}} {{option.surname}}
+        </option>
+        </select>
+        <button class="glyphicon glyphicon-plus rbn" ng-click="addTM(fPapers.authors.model)"></button>
+
+        <span class="well" ng-repeat="item in author">{{item.name}}
+          <button class="glyphicon glyphicon-minus rbn"
+          ng-if="item"
+          ng-click="DeleteTM(item.id, null, 'update')">
+          </button>
+         </span>
+
+        </div>
+
+
+    <div class="col-md-12">
+      <span class="pwarnings">{{message.info[1].message}}</span>
+    </div>
+
+    <div class="col-md-12 text-center">
+      <button class="btn btn-success" ng-click="onPaperSelect(File, fPapers.id)">Save
+      </button>
+      <button class="btn btn-success" ng-click="CloseAddPaper()">Cancel
+      </button>
+    </div>
+
+  </div>

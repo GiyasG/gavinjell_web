@@ -1,0 +1,52 @@
+<!-- <span>{{sectionIndex}}</span> -->
+<div class="row well">
+
+<div class="col-md-2">
+  <button  class="btn btn-info" ngf-select ng-model="File"
+  accept="image/*"
+  ngf-max-height="1000"
+  ngf-max-size="1MB">Select picture
+</button>
+  <p class="well">
+    <img class="imgfit" ng-src="{{File.$ngfBlobUrl ?  File.$ngfBlobUrl : 'img/'+itemU.image }}">
+  </p>
+</div>
+
+<div class="well col-md-3">
+  <span>Title</span>
+  <input class="form-control" type="text" ng-model="itemU.titlet"/>
+  <span>Name</span>
+  <input class="form-control"  type="text" ng-model="itemU.name"/>
+  <span>Surname</span>
+  <input class="form-control"  type="text" ng-model="itemU.surname"/>
+  <span>Position</span>
+  <input class="form-control"  type="text" ng-model="itemU.position"/>
+  <span>Date of birth</span>
+  <input class="form-control"  type="date"  value="{{itemU.dob}}" ng-model="itemU.dob"/>
+  <span>Sex</span>
+  <select ng-model="fTeams.genders.model"
+          required>
+      <option value="fTeams.genders.model" selected></option>
+      <option ng-repeat="option in fTeams.genders.sex"
+        value="{{option}}"
+        >{{option}}
+      </option>
+  </select>
+</div>
+
+
+  <div class="well col-md-6">
+   <textarea data-ui-tinymce id="tinymce1" data-ng-model="itemU.about"></textarea>
+  </div>
+
+<hr>
+<div class="col-md-12">
+  <span class="pwarnings">{{uadata.info ?  uadata.info[1].message : uadata }}</span>
+</div>
+
+<div class="col-md-12 text-center">
+  <button class="btn btn-success" ng-click="onTeamUpdate(File)">Save</button>
+  <button class="btn btn-success" ng-click="CancelUpdateTeam(itemU.id)">Cancel</button>
+</div>
+
+</div>

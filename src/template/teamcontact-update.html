@@ -1,0 +1,24 @@
+<!-- <span>{{sectionIndex}}</span> -->
+    <span>Type of property</span>
+    <input class="form-control" type="text" ng-model="itemU.propertytype" value=""/>
+    <span>Country</span>
+    <input class="form-control" type="text" ng-model="itemU.country" value=""/>
+    <span>City</span>
+    <input class="form-control" type="text" ng-model="itemU.city" value=""/>
+    <span>Postcode</span>
+    <input class="form-control" type="text" ng-model="itemU.postcode" value=""/>
+    <span>Street</span>
+    <input class="form-control" type="text" ng-model="itemU.street" value=""/>
+    <span>Phone number</span>
+    <input class="form-control" type="text" ng-model="itemU.phone" value=""/>
+    <span>E-mail</span>
+    <input class="form-control" type="text" ng-model="itemU.email" value=""/>
+
+<div class="col-md-12">
+  <span class="pwarnings">{{uadata.info ?  uadata.info[1].message : uadata }}</span>
+</div>
+
+  <button class="btn btn-success" ng-click="onTeamcontactUpdate()">Save</button>
+  <button class="btn btn-success" ng-click="CancelUpdateTeamcontact(itemU.id)">Cancel</button>
+
+  <hr>

@@ -1,0 +1,32 @@
+<input type="email" name="email"
+       placeholder="Email"
+       ng-model="user.em"
+       class="form-control"
+       required/>
+<input type="password" name="password" placeholder="Password"
+       ng-model="user.ps"
+       class="form-control"
+       required/>
+
+<select ng-model="rms.model"
+        required>
+    <option value="" selected>Remember ?</option>
+    <option ng-repeat="option in rms.availableOptions"
+      value="{{option.id}}"
+      >{{option.Name}}
+    </option>
+</select>
+
+  <p class="pwarnings">{{loginWarning}}</p>
+<div class="wrapper">
+  <div>
+    <a class="register_link"
+    ng-click="openregisterForm($event)"
+    >Register</a>
+  </div>
+    <div>
+      <a class="forgot_password"
+      ng-click="showForgottenPassword($event)"
+      >Forgotten password</a>
+    </div>
+</div>

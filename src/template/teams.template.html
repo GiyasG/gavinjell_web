@@ -1,0 +1,36 @@
+<!-- <nav-bar></nav-bar> -->
+<div class="container">
+	<h2> Our team </h2>
+	<hr>
+<div class="col-md-4"  ng-repeat="item in teamsCtrl.PagesTeams[0]">
+<a ui-sref="team({id:'{{item.id}}'})">
+		<div class="col-md-4">
+			<img class="imgfit" ng-src="img/{{item.image}}"  alt="photo"/>
+			<p> {{item.titlet}} {{item.name}} {{item.surname}}</p>
+		</div>
+</a>
+</div>
+</div>
+
+<div class="col-md-6 text-center  column-in-center">
+		<ul class="pagination">
+			<button ng-show="teamsCtrl.currentPage-1>=0"
+							ng-style="isPrevious"
+							ng-click="teamsCtrl.NextPage(teamsCtrl.currentPage-1)">
+							Previous
+			</button>
+		</ul>
+		<ul ng-repeat="num in teamsCtrl.totalPages" class="pagination pg-blue">
+			<button class="active"
+							ng-click="teamsCtrl.NextPage(num-1)">
+							{{num}}
+			</button>
+		</ul>
+		<ul class="pagination pg-blue">
+			<button ng-show="teamsCtrl.totalPagesNumber-1!=teamsCtrl.currentPage"
+							ng-style="isNext"
+							ng-click="teamsCtrl.NextPage(teamsCtrl.currentPage+1)">
+							Next
+			</button>
+		</ul>
+</div>

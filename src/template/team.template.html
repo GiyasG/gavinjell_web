@@ -1,0 +1,28 @@
+<!-- <nav-bar></nav-bar> -->
+<div class="container">
+<div class="col-md-12"  ng-repeat="item in tsCtrl.items[3].teams[0]">
+
+		<div class="col-md-4">
+			<img class="imgfit" ng-src="img/{{item.image}}"  alt="photo"/>
+		</div>
+		<div class="col-md-8">
+			<p ng-bind-html=fD.description(item.about)></p>
+		</div>
+		<div class="col-md-12">
+			<p> {{item.titlet}} {{item.name}} {{item.surname}}</p>
+		</div>
+		<div class="col-md-12">
+			<h4>Projects participation:</h4>
+			<p>
+		  	<span ng-repeat="prj in item.project"  ng-init="sectionIndex = $index"> <span ng-show="sectionIndex > 0">, </span>{{prj.title}} </span>
+		 	</p>
+		</div>
+		<div class="col-md-12">
+			<h4>Publications participation:</h4>
+			<p>
+		  	<span ng-repeat="ppr in item.paper"  ng-init="sectionIndex = $index"> <span ng-show="sectionIndex > 0">, </span> {{ppr.title}} </span>
+		 	</p>
+		</div>
+		<hr class="col-md-12">
+</div>
+</div>
